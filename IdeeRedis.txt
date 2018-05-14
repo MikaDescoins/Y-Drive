@@ -1,0 +1,10 @@
+Vente12022018{
+	'hash':[{
+		'pomme':'1'
+		'poire':'3'
+		]}
+		expiration jour+31
+		
+		
+		
+		

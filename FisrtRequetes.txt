@@ -1,0 +1,52 @@
+{"_id":{"$oid":"5adf3d601a2c163350292849"},"name":"Pomme","price":{"$numberDecimal":"0.90"},"amount":100},
+{"_id":{"$oid":"5adf3e4d1a2c16335029284a"},"name":"Curlies","price":{"$numberDecimal":"0.78"},"amount":50,"desc":{"brand":"Vico","info":"100g"}}
+
+
+
+
+db.produits.insert([{"_id":"5adf3d601a2c163350292849","name":"Pomme","price":0.90,"amount":100},
+{"_id":"5adf3e4d1a2c16335029284a","name":"Curlies","price":0.78,"amount":50,"desc":{"brand":"Vico","info":"100g"}}])
+
+
+db.produits.find().pretty()
+
+
+
+Ajout au panier : 
+db.produits.updateMany(
+	{'_id':$id},
+	{
+		$set:{
+			'amount':$amount-$quantite
+			$currentDate: { lastModified: true }
+			}
+	}
+)
+			
+
+
+
+
+			Ajout au panier : 
+db.produits.update(
+	{'_id':"5adf3d601a2c163350292849"},
+	{
+		$inc:{
+			'amount': -1}
+			$currentDate: { lastModified: true }
+			}
+	}
+)
+			
+			
+			
+db.produits.update 
+{ '_id': '5adf3d601a2c163350292849' },
+{
+$set: {
+'date': '',
+company: 'Wikodit'}
+}
+)
+
+
