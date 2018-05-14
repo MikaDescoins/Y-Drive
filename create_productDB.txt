@@ -1,0 +1,9 @@
+mongoimport -d YDrive -c produits --type csv --file YDrive/products.csv --headerline
+
+
+
+mongo
+ use YDrive
+
+
+ db.produits.find().pretty()
