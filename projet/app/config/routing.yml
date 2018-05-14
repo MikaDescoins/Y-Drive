@@ -1,0 +1,6 @@
+
+extranet_home:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /ydrive
+    requirements:
+        _locale: en|fr

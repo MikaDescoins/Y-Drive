@@ -1,0 +1,12 @@
+ydrive_product_index:
+    path:     /index
+    defaults: { _controller: AppBundle:Default:index }
+
+ydrive_product_create:
+    path:     /create
+    defaults: { _controller: AppBundle:Default:create }
+
+ydrive_product_show:
+    path:     /show/{id}
+    defaults: { _controller: AppBundle:Default:show }
+
