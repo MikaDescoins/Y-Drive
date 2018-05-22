@@ -6,7 +6,37 @@ ydrive_product_create:
     path:     /create
     defaults: { _controller: AppBundle:Default:create }
 
+
+ydrive_product_create_submit:
+    path:     /create/submit
+    defaults: { _controller: AppBundle:Default:createSubmit }
+
+ydrive_product_update:
+    path:     /update/{id}
+    defaults: { _controller: AppBundle:Default:update }
+
+
+ydrive_product_update_submit:
+    path:     /update/submit/{id}
+    defaults: { _controller: AppBundle:Default:updateSubmit }
+
 ydrive_product_show:
     path:     /show/{id}
     defaults: { _controller: AppBundle:Default:show }
+
+ydrive_product_delete:
+    path:     /delete/{id}
+    defaults: { _controller: AppBundle:Default:delete }
+
+ydrive_product_add_cart:
+    path:     /addcart/{id}
+    defaults: { _controller: AppBundle:Default:addCart }
+
+ydrive_cart_index:
+    path:     /cart/index
+    defaults: { _controller: AppBundle:Default:cartIndex }
+
+ydrive_cart_remove_article:
+    path:     /cart/remove/{id}
+    defaults: { _controller: AppBundle:Default:removeCart }
 

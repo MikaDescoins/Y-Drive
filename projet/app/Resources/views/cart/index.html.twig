@@ -1,0 +1,77 @@
+<style>table
+    {
+        border-collapse: collapse;
+    }
+    td, th /* Mettre une bordure sur les td ET les th */
+    {
+        border: 1px solid black;
+    }
+</style>
+
+{% set total = 0 %}
+{%  include('default/menu.html.twig') %}
+
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<table>
+    <caption>Liste des produits</caption>
+
+    <tr>
+        <th>ID</th>
+        <th>PRODUCT ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>STOCK</th>
+        <th>DESCRIPTION</th>
+        <th>ACTIONS</th>
+    </tr>
+
+    {% for product in products %}
+        {% if product is not null %}
+            {% set total = total + product.price %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.productId }}</td>
+            <td>{{ product.productName }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+            <td>{{ product.description }}</td>
+            <td><a href="{{ path('ydrive_cart_remove_article', {'id': product.id}) }}" >Retirer du Panier</a> </td>
+        </tr>
+    {% endif %}
+    {% endfor %}
+
+
+</table>
+<br>
+
+<center>
+<table>
+    <caption>Total Panier</caption>
+
+    <tr>
+        <th>Prix Produits</th>
+        <th>Frais de ports</th>
+        <th>TOTAL TTC</th>
+        <th>ACTION</th>
+    </tr>
+
+
+            <tr>
+                <td>{{ total/100 }} EUR</td>
+                <td>Offert</td>
+                <td>{{ total /100 }} EUR</td>
+                <td><a href="#">Passer la commande</a></td>
+            </tr>
+
+
+
+</table>
+
+</center>

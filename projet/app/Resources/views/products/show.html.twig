@@ -1,0 +1,46 @@
+<style>table
+    {
+        border-collapse: collapse;
+    }
+    td, th /* Mettre une bordure sur les td ET les th */
+    {
+        border: 1px solid black;
+    }
+</style>
+{%  include('default/menu.html.twig') %}
+
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<table>
+    <caption>{{ product.productName }}</caption>
+
+    <tr>
+        <th>ID</th>
+        <th>PRODUCT ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>STOCK</th>
+        <th>DESCRIPTION</th>
+        <th>ACTIONS</th>
+    </tr>
+
+
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.productId }}</td>
+            <td>{{ product.productName }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+            <td>{{ product.description }}</td>
+            <td><a href="{{ path('ydrive_product_add_cart', {'id': product.id}) }}">Ajouter au Panier</a> - <a href="{{ path('ydrive_product_update', { 'id': product.id }) }}">Modifier</a> - <a href="{{ path('ydrive_product_delete', {'id': product.id}) }}">Supprimer</a> </td>
+        </tr>
+
+
+
+</table>

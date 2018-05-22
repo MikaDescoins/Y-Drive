@@ -1,0 +1,23 @@
+{%  include('default/menu.html.twig') %}
+
+<form action="{{ path('ydrive_product_create_submit') }}" id='form_validation' method="POST">
+
+    <label>Id du produit : </label>
+    <input type="text" name="productId" id="productId" />
+    <br><br>
+
+    <label>Name du produit : </label>
+    <input type="text" name="productName" id="productName" />
+    <br><br>
+
+
+    <label>Prix du produit  :  </label>
+    <input type="text" name="retailPrice" id="retailPrice" />
+<br><br>
+
+    <label>Description du produit  :  </label>
+    <input type="text" name="description" id="description" />
+    <br><br>
+
+    <input type="submit" value="Envoyer"/>
+</form>

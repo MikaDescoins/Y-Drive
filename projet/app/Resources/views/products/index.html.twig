@@ -1,0 +1,51 @@
+<style>table
+    {
+        border-collapse: collapse;
+    }
+    td, th /* Mettre une bordure sur les td ET les th */
+    {
+        border: 1px solid black;
+    }
+</style>
+{%  include('default/menu.html.twig') %}
+
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<table>
+    <caption>Liste des produits</caption>
+
+    <tr>
+        <th>ID</th>
+        <th>PRODUCT ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>STOCK</th>
+        <th>DESCRIPTION</th>
+        <th>ACTIONS</th>
+    </tr>
+
+    {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.productId }}</td>
+            <td>{{ product.productName }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+            <td>{{ product.description }}</td>
+            <td><a href="{{ path('ydrive_product_show', {'id': product.id}) }}">Voir la fiche produit</a> - <a href="{{ path('ydrive_product_add_cart', {'id': product.id}) }}">Ajouter au Panier</a> - <a href="{{ path('ydrive_product_update', { 'id': product.id }) }}">Modifier</a> - <a href="{{ path('ydrive_product_delete', {'id': product.id}) }}">Supprimer</a> </td>
+        </tr>
+    {% endfor %}
+
+
+</table>
+<br>
+<center><a href="{{ path('ydrive_product_index', {'start': 0}) }}">1</a> - <a href="{{ path('ydrive_product_index', {'start': 100}) }}">2</a> - <a href="{{ path('ydrive_product_index', {'start': 200}) }}">3</a> - <a href="{{ path('ydrive_product_index', {'start': 300}) }}">4</a> - <a href="{{ path('ydrive_product_index', {'start': 400}) }}">5</a> - <a href="{{ path('ydrive_product_index', {'start': 500}) }}">6</a> - <a href="{{ path('ydrive_product_index', {'start': 600}) }}">7</a> - <a href="{{ path('ydrive_product_index', {'start': 700}) }}">8</a> - <a href="{{ path('ydrive_product_index', {'start': 800}) }}">9</a> - <a href="{{ path('ydrive_product_index', {'start': 900}) }}">10</a></center>
+<br>
+
+<a href="{{ path('ydrive_product_create') }}">Ajouter un produit</a>
