@@ -41,7 +41,15 @@
 <center><ul id="menu_horizontal">
         <li class="bouton_gauche"><a href="{{ path('ydrive_product_index') }}">Shop</a></li>
         <li class="bouton_gauche"><a href="{{ path('ydrive_cart_index') }}">Mon Panier</a></li>
-        <li class="bouton_gauche"><a href="{{ path('ydrive_product_create') }}">Ajouter un Produit</a></li>
 
+        <li class="bouton_gauche"><a href="{{ path("ydrive_order_index") }}">Mes commandes</a></li>
+        {% if app.user %}
+            <li class="bouton_droite"><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+            <li class="bouton_droite"><a href="{{ path('fos_user_profile_edit') }}">Mon compte</a></li>
+
+        {% else %}
+            <li class="bouton_droite"><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
+            <li class="bouton_droite"><a href="{{ path('fos_user_registration_register') }}">S'inscrire</a></li>
+        {% endif %}
 
     </ul></center><br><br>

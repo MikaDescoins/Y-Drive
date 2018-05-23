@@ -6,7 +6,8 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
+
 
 framework:
     #esi: ~
@@ -30,6 +31,7 @@ framework:
     assets: ~
     php_errors:
         log: true
+    translator: ~
 
 # Twig Configuration
 twig:
@@ -76,3 +78,13 @@ doctrine_mongodb:
     document_managers:
         default:
             auto_mapping: true
+
+fos_user:
+    db_driver: mongodb # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Document\User
+    service:                               # this lines
+            mailer: fos_user.mailer.twig_swift
+    from_email:
+        address: "mikael.descoins@ynov.com"
+        sender_name: "mikael descoins"

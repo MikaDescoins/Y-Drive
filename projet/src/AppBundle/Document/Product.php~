@@ -4,6 +4,7 @@ namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Id;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 
 /**
@@ -185,4 +186,9 @@ class Product
     {
         return $this->price;
     }
+
+
+
+
+
 }

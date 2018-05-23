@@ -40,3 +40,10 @@ ydrive_cart_remove_article:
     path:     /cart/remove/{id}
     defaults: { _controller: AppBundle:Default:removeCart }
 
+ydrive_order_create:
+    path:     /order/create
+    defaults: { _controller: AppBundle:Default:createOrder }
+
+ydrive_order_index:
+    path:     /order/index
+    defaults: { _controller: AppBundle:Default:indexOrder }

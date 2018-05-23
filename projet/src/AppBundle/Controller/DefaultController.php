@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Document\Order;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class DefaultController extends Controller
@@ -17,6 +19,7 @@ class DefaultController extends Controller
 
     public function indexAction(Request $request)
     {
+       // $user = $this->get('security.token_storage')->getToken()->getUser();
 
 
 
@@ -229,6 +232,91 @@ class DefaultController extends Controller
         return $this->redirectToRoute('ydrive_cart_index');
     }
 
+    public function createOrderAction( )
+    {
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $session = $this->container->get('session');
+        $a = $session->get('cart');
+
+
+        if($a != ''){
+        // ------------- CREATION DE L'ORDER ----------------
+        $order = new Order();
+        $order->setUser($user);
+
+
+
+
+        $a = explode('/', $a);
+
+        $products = array();
+
+
+        $total = 0;
+
+        foreach ($a as $id){
+            $product = $dm->getRepository('AppBundle:Product')->find($id);
+            array_push($products, $product)   ;
+            if($product){
+                $order->addProduct($product);
+                $total += $product->getPrice();
+                $product->setStock($product->getStock()-1);
+            }
+
+        }
+
+        $order->setTotal($total);
+        $date = new \DateTime();
+        $order->setDateOrder($date);
+
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $dm->persist($order);
+        $dm->flush();
+
+
+        // ------------- TRAITEMENT POST ORDER ----------------
+
+        $session->set('cart', '');
+
+
+
+        return $this->render('order/success.html.twig',array(
+            'order'=>$order,
+        ));
+
+        }
+        else{
+            return $this->render('order/error.html.twig'
+            );
+        }
+
+    }
+
+
+    public function indexOrderAction()
+    {
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $orders = $dm->getRepository('AppBundle:Order')->findBy(array('user.id'=>$user->getId()));
+
+
+
+
+
+        return $this->render('order/index.html.twig',array(
+            'orders'=>$orders
+        ));
+
+
+
+    }
 
 
 }
