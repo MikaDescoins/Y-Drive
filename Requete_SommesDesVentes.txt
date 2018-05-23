@@ -1,0 +1,42 @@
+db.ventes.aggregate([
+	{
+		$unwind: { path: "$produits" }
+	},
+	{
+		$group: 
+		{
+			_id: '$produits.productId',
+			quantite: { $sum: '$produits.quantite' }
+		}
+	},
+	{
+		$lookup:
+		{
+			from: 'produits',
+			localField: '_id',
+			foreignField: '_id',
+			as: '_produits'
+		}
+	},
+	{
+		$unwind: { path: "$_produits" }
+	},
+	{
+		$project: 
+		{
+			_id : false,
+			product_name : '$_produits.product_name',
+			quantite :true,
+			stock : '$_produits.stock',
+			price : '$_produits.price',
+			totalAmount :  { $multiply: [ '$_produits.price','$quantite' ] } ,
+		}   
+	},
+	{
+		$sort : 
+		{
+			quantite :-1 
+		}
+	}
+]) 
+	
