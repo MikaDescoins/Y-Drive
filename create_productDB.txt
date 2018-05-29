@@ -6,4 +6,4 @@ mongo
  use YDrive
 
 
- db.produits.find().pretty()
+ db.produits.find().pretty()	

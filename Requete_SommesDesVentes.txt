@@ -30,6 +30,7 @@ db.ventes.aggregate([
 			stock : '$_produits.stock',
 			price : '$_produits.price',
 			totalAmount :  { $multiply: [ '$_produits.price','$quantite' ] } ,
+			restant : { $subtract :['$_produits.stock', '$quantite']}
 		}   
 	},
 	{
