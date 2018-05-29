@@ -40,3 +40,19 @@ ydrive_cart_remove_article:
     path:     /cart/remove/{id}
     defaults: { _controller: AppBundle:Default:removeCart }
 
+ydrive_order_create:
+    path:     /order/create
+    defaults: { _controller: AppBundle:Default:createOrder }
+
+ydrive_order_index:
+    path:     /order/index
+    defaults: { _controller: AppBundle:Default:indexOrder }
+
+ydrive_api_index:
+    path:     /api/index
+    defaults: { _controller: AppBundle:Default:indexApi }
+
+
+ydrive_api_search:
+    path:     /api/search
+    defaults: { _controller: AppBundle:Default:searchApi }

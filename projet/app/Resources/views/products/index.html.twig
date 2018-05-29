@@ -38,7 +38,7 @@
             <td>{{ product.price }}</td>
             <td>{{ product.stock }}</td>
             <td>{{ product.description }}</td>
-            <td><a href="{{ path('ydrive_product_show', {'id': product.id}) }}">Voir la fiche produit</a> - <a href="{{ path('ydrive_product_add_cart', {'id': product.id}) }}">Ajouter au Panier</a> - <a href="{{ path('ydrive_product_update', { 'id': product.id }) }}">Modifier</a> - <a href="{{ path('ydrive_product_delete', {'id': product.id}) }}">Supprimer</a> </td>
+            <td style="width: 150px;"><a href="{{ path('ydrive_product_show', {'id': product.id}) }}">Voir la fiche produit</a> <br> <a href="{{ path('ydrive_product_add_cart', {'id': product.id}) }}">Ajouter au Panier</a> <br> <a href="{{ path('ydrive_product_update', { 'id': product.id }) }}">Modifier</a> <br> <a href="{{ path('ydrive_product_delete', {'id': product.id}) }}">Supprimer</a> </td>
         </tr>
     {% endfor %}
 

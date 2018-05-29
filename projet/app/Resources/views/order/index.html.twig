@@ -1,0 +1,53 @@
+{%  include('default/menu.html.twig') %}
+
+<style>table
+    {
+        border-collapse: collapse;
+    }
+    td, th /* Mettre une bordure sur les td ET les th */
+    {
+        border: 1px solid black;
+    }
+</style>
+
+<h3>Toutes mes commandes</h3>
+
+{% for order in orders %}
+    <table style="width:60%">
+        <caption>Commande <strong>{{ order.id }}</strong> - Réalisée le <strong>{{ order.dateOrder | date("m/d/Y H:i:s" ) }}</strong></caption>
+
+        <tr>
+            <th>ID</th>
+            <th>PRODUCT ID</th>
+            <th>NAME</th>
+            <th>PRICE</th>
+
+
+
+        </tr>
+
+        {% for product in order.products %}
+            {% if product is not null %}
+
+                <tr>
+                    <td style="width: 10%">{{ product.id }}</td>
+                    <td style="width: 10%">{{ product.productId }}</td>
+                    <td style="width: 30%">{{ product.productName }}</td>
+                    <td style="width: 10%">{{ product.price }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        <tr>
+            <td style="width: 10%"></td>
+            <td style="width: 10%"></td>
+            <td style="width: 30%"><center>TOTAL</center>y</td>
+            <td style="width: 10%">{{ order.total }}</td>
+        </tr>
+
+
+    </table>
+
+    <br><br>
+{% endfor %}
+
+

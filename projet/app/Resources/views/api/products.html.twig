@@ -1,0 +1,54 @@
+<style>table
+   {
+      border-collapse: collapse;
+   }
+   td, th /* Mettre une bordure sur les td ET les th */
+   {
+      border: 1px solid black;
+   }
+</style>
+{%  include('default/menu.html.twig') %}
+
+<table>
+   <caption>Liste des produits</caption>
+
+   <tr>
+      <th>IMAGE</th>
+      <th>PRODUCT ID</th>
+      <th>NAME</th>
+      <th>PRICE</th>
+      <th>IN STOCK</th>
+      <th>DESCRIPTION</th>
+      <th>ACTIONS</th>
+   </tr>
+
+    {% for product in products.products %}
+        {% if product is not null %}
+
+           <tr>
+              <td height="100" >
+                 {% if product.images != null %}
+                 <img height="100" src="{{ product.images[0] }}">
+                 {% endif %}
+              </td>
+              <td>{{ product.product_id }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.price }}</td>
+              <td>
+
+                  {%  if product.in_stock ==1 %}OUI{% else %}NON{% endif %}</td>
+              <td>{{ product.description }}</td>
+              <td><a href="{{ product.url }}" >Acheter ce produit</a> </td>
+           </tr>
+        {% endif %}
+    {% endfor %}
+
+
+</table>
+
+
+
+
+
+
+
