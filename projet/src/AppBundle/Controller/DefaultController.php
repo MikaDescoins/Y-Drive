@@ -318,5 +318,42 @@ class DefaultController extends Controller
 
     }
 
+    public function indexApiAction(Request $request)
+    {
+        if($request){
+            $json = file_get_contents('http://webhose.io/productFilter?token=d195e189-db6b-4b2c-b1a5-45c76eec2e1d&format=json&q='.$request->get("product"));
+            $obj = json_decode($json);
+
+
+
+
+
+            return $this->render('api/products.html.twig', array('products'=>$obj));
+        }
+
+
+        return $this->render('api/products.html.twig');
+
+        $this->addFlash("error", "Erreur, votre requête n'a pas pu aboutir..");
+
+
+
+
+        return $this->redirectToRoute('ydrive_api_search');
+
+
+    }
+
+    public function searchApiAction()
+    {
+
+
+        return $this->render('api/search.html.twig');
+
+
+
+
+    }
+
 
 }
